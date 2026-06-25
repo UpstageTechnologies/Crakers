@@ -3,12 +3,10 @@ import Razorpay from "razorpay";
 const router = Router();
 
 const razorpayKeyId = process.env.RAZORPAY_KEY_ID;
-const razorpayKeySecret = process.env.RAZORPAY_KEY_SECRET;
 
 router.post("/checkout", async (req, res) => {
   const razorpay = new Razorpay({
     key_id:  "rzp_test_RqckwEGqKZFqMk",
-    key_secret: "",
   });
 
   try {

@@ -77,11 +77,11 @@ const CheckoutBtn = ({ products }: { products: ProductProps[] }) => {
           Need to sign in to make checkout
         </p>
       )}
-      currentUser && !currentUser?.address && (
+      {currentUser && !currentUser?.address && (
         <p className="mt-2 text-sm font-medium text-red-500 text-center">
           Need to add address for delivery
         </p>
-      )
+      )}
     </div>
   );
 };
