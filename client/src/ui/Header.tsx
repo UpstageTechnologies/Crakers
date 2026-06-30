@@ -69,13 +69,13 @@ const Header =() =>{
 
    return(
    <div className="w-full bg-whiteText md-sticky md:top-0 z-50">
-    <div className="max-w-screen-xl mx-autoh-12 flex items-center justify-between px-4 pt-4 lg:px-0">
+    <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-4 gap-3">
       {/*Logo*/}
       <Link to={"/"}>
-      <img src={logo} alt="logo" className="w-44" />
+      <img src={logo} alt="logo" className="w-28 md:w-44" />
       </Link>
       {/* SearchBar*/}
-      <div className="hidden md:inline-flex max-w-3xl w-full relative">
+      <div className="flex max-w-3xl w-full relative mx-3">
           <input
             type="text"
             onChange={(e) => setSearchText(e.target.value)}
@@ -144,7 +144,7 @@ const Header =() =>{
       </div>
     </div>
     <div className="w-full bg-darkText text-whiteText">
-        <Container className="py-2 max-w-4xl flex items-center gap-5 justify-between"> 
+        <Container className="py-2 max-w-4xl flex items-center gap-12 overflow-x-auto whitespace-nowrap">
              <Menu>
             <MenuButton className="inline-flex items-center gap-2 rounded-md border border-gray-400 hover:border-white py-1.5 px-3 font-semibold text-gray-300 hover:text-whiteText">
               Select Category <FaChevronDown className="text-base mt-1" />
@@ -179,12 +179,18 @@ const Header =() =>{
               </MenuItems>
             </Transition>
             </Menu>
-            {bottomNavigation.map(({title,link})=>(
-                <Link to={link} key={title} className="uppercase hidden md:inline-flex text-sm font-semibold text-whitwText/90 hover:text-whiteText duration-200 relative overflow-hidden group">
-                    {title}
-                    <span className="inline-flex w-full h-[1px] bg-whiteText absolute bottom-0 left-0 transform -translate-x-[105%] group-hover:translate-x-0 duration-300" />
-                </Link>
-            ))}
+            <div className="flex items-center gap-12 overflow-x-auto whitespace-nowrap scrollbar-hide">
+  {bottomNavigation.map(({ title, link }) => (
+    <Link
+      key={title}
+      to={link}
+      className="uppercase shrink-0 inline-flex text-sm font-semibold text-white/90 hover:text-white duration-200 relative overflow-hidden group"
+    >
+      {title}
+      <span className="inline-flex w-full h-[1px] bg-white absolute bottom-0 left-0 transform -translate-x-[105%] group-hover:translate-x-0 duration-300" />
+    </Link>
+  ))}
+</div>
         </Container>
     </div>
    </div>
