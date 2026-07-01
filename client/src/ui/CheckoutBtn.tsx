@@ -1,5 +1,15 @@
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
+import { db } from "../lib/firebase";
+import toast from "react-hot-toast";
 import type { ProductProps } from "../../type";
 import { store } from "../lib/store";
+
 
 declare global {
   interface Window {
@@ -33,9 +43,32 @@ const CheckoutBtn = ({ products }: { products: ProductProps[] }) => {
         currency: "INR",
         name: "Crackers Store",
         description: "Order Payment (Frontend Only Test)",
-        handler: function (response: any) {
-          alert("Payment Successful");
-          console.log(response);
+        handler: async function (response: any) {
+          try {
+            const orderRef = doc(db, "orders", currentUser?.email!);
+            const docSnap = await getDoc(orderRef);
+            const orderData = {
+              userEmail: currentUser?.email,
+              paymentId: response.razorpay_payment_id,
+              orderItems: products,
+              paymentMethod: "razorpay",
+              userId: currentUser?.id,
+            };
+            if (docSnap.exists()) {
+              await updateDoc(orderRef, {
+                orders: arrayUnion(orderData),
+            });
+           } else {
+              await setDoc(orderRef, {
+                orders: [orderData],
+            });
+           }
+           toast.success("Payment Successful & Order Saved!");
+           window.location.href="/success";
+           } catch (error) {
+            console.error(error);
+            toast.error("Order save failed");
+          }
         },
         prefill: {
           email: currentUser?.email,

@@ -56,10 +56,7 @@ const Orders = () => {
             <span className="text-black font-semibold">{orders?.length}</span>
           </p>
           <p className="text-sm max-w-[600px] tracking-wide text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-            porro, nemo quisquam explicabo, mollitia inventore nobis id maiores
-            odio incidunt quidem rerum delectus quaerat similique voluptates
-            dolores perferendis numquam quae.
+           Thank you for shopping with us! Here you can view your complete order history and check the current status of each order.
           </p>
           <div className="flex flex-col gap-3">
             <div className="space-y-6 divide-y divide-gray-900/10">
@@ -103,7 +100,7 @@ const Orders = () => {
                               <p className="text-gray-600">
                                 Payment Status:{" "}
                                 <span className="text-black font-medium">
-                                  Paid by Stripe
+                                  Paid by razorpay
                                 </span>
                               </p>
                               <p className="text-gray-600">
